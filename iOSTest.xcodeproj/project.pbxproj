@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3B0FC39D2204D87500F5FABB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0FC39C2204D87500F5FABB /* AppDelegate.swift */; };
-		3B0FC39F2204D87500F5FABB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0FC39E2204D87500F5FABB /* ViewController.swift */; };
 		3B0FC3A22204D87500F5FABB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0FC3A02204D87500F5FABB /* Main.storyboard */; };
 		3B0FC3A42204D87600F5FABB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B0FC3A32204D87600F5FABB /* Assets.xcassets */; };
 		3B0FC3A72204D87600F5FABB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B0FC3A52204D87600F5FABB /* LaunchScreen.storyboard */; };
@@ -54,7 +53,6 @@
 /* Begin PBXFileReference section */
 		3B0FC3992204D87500F5FABB /* iOSTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B0FC39C2204D87500F5FABB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3B0FC39E2204D87500F5FABB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3B0FC3A12204D87500F5FABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3B0FC3A32204D87600F5FABB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B0FC3A62204D87600F5FABB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -143,7 +141,6 @@
 				3BAC65BB22131D6A00C7A9CE /* Simple */,
 				3BAC65B6220C7FBD00C7A9CE /* MVI */,
 				3B0FC39C2204D87500F5FABB /* AppDelegate.swift */,
-				3B0FC39E2204D87500F5FABB /* ViewController.swift */,
 				3B0FC3A02204D87500F5FABB /* Main.storyboard */,
 				3B0FC3A32204D87600F5FABB /* Assets.xcassets */,
 				3B0FC3A52204D87600F5FABB /* LaunchScreen.storyboard */,
@@ -377,7 +374,6 @@
 				3BAC65B8220C803400C7A9CE /* Presenter.swift in Sources */,
 				3BEF3F4C2226DB1E00A828B1 /* InputTimerModels.swift in Sources */,
 				3BEF3F502226DEC600A828B1 /* InputTimerViewController.swift in Sources */,
-				3B0FC39F2204D87500F5FABB /* ViewController.swift in Sources */,
 				3BAC65C12215ED7C00C7A9CE /* SimplePresenter.swift in Sources */,
 				3BEF3F4A2226D9EE00A828B1 /* InputTimerPresenter.swift in Sources */,
 				3BAC65BF221343A900C7A9CE /* SimpleViewController.swift in Sources */,

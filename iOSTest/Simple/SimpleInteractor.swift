@@ -1,11 +1,3 @@
-//
-//  SimpleInteractor.swift
-//  iOSTest
-//
-//  Created by Corey Horn on 2/26/19.
-//  Copyright © 2019 Snag. All rights reserved.
-//
-
 import UIKit
 import RxSwift
 

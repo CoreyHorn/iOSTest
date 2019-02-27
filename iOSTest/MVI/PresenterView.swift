@@ -53,9 +53,4 @@ class AnyPresenterView<E, A, R, S>: PresenterViewProtocol {
     func renderState(state: S) {
         return _renderState(state)
     }
-    
-}
-
-enum PresenterError: Error {
-    case nullDelegate
 }

@@ -29,7 +29,6 @@ class Interactor<A: Action, R: Result> {
             NSLog("Delegate is nil. Make sure to set self.delegate in all Interactor init functions.")
         }
     }
-    
 }
 
 protocol InteractorProtocol{
@@ -37,7 +36,6 @@ protocol InteractorProtocol{
     associatedtype Result
     
     func actionToResult(action: Action) -> Result
-    
 }
 
 class AnyInteractor<A, R>: InteractorProtocol {
@@ -51,5 +49,4 @@ class AnyInteractor<A, R>: InteractorProtocol {
     func actionToResult(action: A) -> R {
         return _actionToResult(action)
     }
-
 }
