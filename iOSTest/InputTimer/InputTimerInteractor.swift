@@ -1,6 +1,6 @@
 import RxSwift
 
-class InputTimerInteractor: Interactor<InputTimerAction, InputTimerResult>, InteractorProtocol {
+class InputTimerInteractor: Interactor<InputTimerEvent, InputTimerResult>, InteractorProtocol {
     
     let bag = DisposeBag()
     
@@ -9,8 +9,8 @@ class InputTimerInteractor: Interactor<InputTimerAction, InputTimerResult>, Inte
         self.delegate = AnyInteractor(self)
     }
     
-    override func connect(actions: Observable<InputTimerAction>) {
-        super.connect(actions: actions)
+    override func connect(events: Observable<InputTimerEvent>) {
+        super.connect(events: events)
         
         Services.instance.timerService.timerResults
             .map { InputTimerResult.NewTime(time: $0) }
@@ -18,8 +18,8 @@ class InputTimerInteractor: Interactor<InputTimerAction, InputTimerResult>, Inte
             .disposed(by: bag)
     }
     
-    func actionToResult(action: InputTimerAction) -> InputTimerResult {
-        switch (action) {
+    func eventToResult(event: InputTimerEvent) -> InputTimerResult {
+        switch (event) {
         case .TextEntry(text: let text):
             return .NewText(text: text)
         }

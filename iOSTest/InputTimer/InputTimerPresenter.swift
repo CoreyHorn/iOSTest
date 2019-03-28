@@ -1,16 +1,9 @@
 import RxSwift
 import Foundation
 
-class InputTimerPresenter: Presenter<InputTimerEvent, InputTimerAction, InputTimerResult,InputTimerState>, PresenterProtocol
-{
-    func eventToAction(event: InputTimerEvent) -> InputTimerAction {
-        switch (event) {
-        case .TextEntry(text: let text):
-            return .TextEntry(text: text)
-        }
-    }
+class InputTimerPresenter: Presenter<InputTimerEvent, InputTimerResult, InputTimerState>, PresenterProtocol {
     
-    func accumulator(previousState: InputTimerState, result: InputTimerResult) -> InputTimerState {
+    func resultToState(previousState: InputTimerState, result: InputTimerResult) -> InputTimerState {
         switch (result) {
         case .NewText(text: let text):
             return InputTimerState(text: text, time: previousState.time)
@@ -20,15 +13,23 @@ class InputTimerPresenter: Presenter<InputTimerEvent, InputTimerAction, InputTim
         }
     }
     
-    
     func results() -> Observable<InputTimerResult> {
         let interactor = InputTimerInteractor()
-        interactor.connect(actions: actions)
+        interactor.connect(events: events)
         return interactor.results
     }
     
     override init(events: Observable<InputTimerEvent>, initialState: InputTimerState) {
         super.init(events: events, initialState: initialState)
+        
+        /* This is here to show how the presenter is able to filter events
+        before forwarding to the presenter. This could allow for checking
+        the current state and conditionally forwarding / modifying the event.
+        This should be done before delegate is set or the changes won't be applied.*/
+        
+        //Uncommenting the line below will mean no events reach the interactor
+        //self.events = events.filter { _ in return false }
+        
         delegate = AnyPresenter(self)
     }
 }

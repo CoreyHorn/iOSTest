@@ -1,4 +1,3 @@
-protocol Event {}
-protocol Action {}
-protocol Result {}
-protocol State {}
+protocol MVIEvent {}
+protocol MVIResult {}
+protocol MVIState {}

@@ -1,9 +1,9 @@
 import Foundation
 import UIKit
 
-class SimpleViewController: PresenterView<SimpleEvent, SimpleAction, SimpleResult, SimpleState>, PresenterViewProtocol {
+class SimpleViewController: PresenterView<SimpleEvent, SimpleResult, SimpleState>, PresenterViewProtocol {
     
-    func getPresenter() -> AnyPresenter<SimpleEvent, SimpleAction, SimpleResult, SimpleState> {
+    func getPresenter() -> AnyPresenter<SimpleEvent, SimpleResult, SimpleState> {
         return AnyPresenter(SimplePresenter(events: events, initialState: SimpleState(string: "initial state")))
     }
     

@@ -1,20 +1,20 @@
 import RxSwift
 import RxCocoa
 
-class Interactor<A: Action, R: Result> {
+class Interactor<E: Event, R: Result> {
     
     let results = PublishSubject<R>()
     
-    var delegate: AnyInteractor<A, R>!
+    var delegate: AnyInteractor<E, R>!
     
-    private let actionBag = DisposeBag()
+    private let bag = DisposeBag()
     
-    func connect(actions: Observable<A>) {
+    func connect(events: Observable<E>) {
         checkPreReqs()
         
-        actions.map { self.delegate.actionToResult(action: $0) }
+        events.map { self.delegate.eventToResult(event: $0) }
             .subscribe(results)
-            .disposed(by: actionBag)
+            .disposed(by: bag)
     }
     
     private func checkPreReqs() {
@@ -25,21 +25,21 @@ class Interactor<A: Action, R: Result> {
 }
 
 protocol InteractorProtocol{
-    associatedtype Action
+    associatedtype Event
     associatedtype Result
     
-    func actionToResult(action: Action) -> Result
+    func eventToResult(event: Event) -> Result
 }
 
-class AnyInteractor<A, R>: InteractorProtocol {
+class AnyInteractor<E, R>: InteractorProtocol {
     
-    private let _actionToResult: (_ action: A) -> R
+    private let _eventToResult: (_ event: E) -> R
     
-    required init<I: InteractorProtocol>(_ interactor: I) where I.Action == A, I.Result == R {
-        _actionToResult = interactor.actionToResult
+    required init<I: InteractorProtocol>(_ interactor: I) where I.Event == E, I.Result == R {
+        _eventToResult = interactor.eventToResult
     }
     
-    func actionToResult(action: A) -> R {
-        return _actionToResult(action)
+    func eventToResult(event: E) -> R {
+        return _eventToResult(event)
     }
 }

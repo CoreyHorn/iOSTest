@@ -1,7 +1,7 @@
 import UIKit
 import RxSwift
 
-class InputTimerViewController: PresenterView<InputTimerEvent, InputTimerAction, InputTimerResult, InputTimerState>, PresenterViewProtocol {
+class InputTimerViewController: PresenterView<InputTimerEvent, InputTimerResult, InputTimerState>, PresenterViewProtocol {
     
     @IBOutlet weak var currentTime: UILabel!
     @IBOutlet weak var lastTextEntered: UILabel!
@@ -13,7 +13,7 @@ class InputTimerViewController: PresenterView<InputTimerEvent, InputTimerAction,
         }
     }
     
-    func getPresenter() -> AnyPresenter<InputTimerEvent, InputTimerAction, InputTimerResult, InputTimerState> {
+    func getPresenter() -> AnyPresenter<InputTimerEvent, InputTimerResult, InputTimerState> {
         return AnyPresenter(InputTimerPresenter(events: events,
                                                 initialState: InputTimerState(text: "Enter Some Text Below", time: 0)))
     }

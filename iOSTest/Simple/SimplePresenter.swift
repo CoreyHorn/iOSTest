@@ -1,21 +1,14 @@
 import RxSwift
 
-class SimplePresenter: Presenter<SimpleEvent, SimpleAction, SimpleResult, SimpleState>, PresenterProtocol {
+class SimplePresenter: Presenter<SimpleEvent, SimpleResult, SimpleState>, PresenterProtocol {
     
     func results() -> Observable<SimpleResult> {
         let interactor = SimpleInteractor()
-        interactor.connect(actions: actions)
+        interactor.connect(events: events)
         return interactor.results
     }
     
-    func eventToAction(event: SimpleEvent) -> SimpleAction {
-        switch (event) {
-        case SimpleEvent.test(string: let eventString):
-            return .test(string: eventString)
-        }
-    }
-    
-    func accumulator(previousState: SimpleState, result: SimpleResult) -> SimpleState {
+    func resultToState(previousState: SimpleState, result: SimpleResult) -> SimpleState {
         switch (result) {
         case SimpleResult.test(string: let resultString):
             return SimpleState(string: resultString)

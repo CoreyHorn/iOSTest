@@ -1,13 +1,13 @@
 import RxSwift
 import UIKit
 
-class PresenterView<E: Event, A: Action, R: Result, S: State>: UIViewController {
+class PresenterView<E: Event, R: Result, S: State>: UIViewController {
     
-    var delegate: AnyPresenterView<E, A, R, S>! 
+    var delegate: AnyPresenterView<E, R, S>!
     let events = ReplaySubject<E>.createUnbounded()
     let bag = DisposeBag()
     
-    var presenter: AnyPresenter<E, A, R, S>!
+    var presenter: AnyPresenter<E, R, S>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,26 +27,24 @@ class PresenterView<E: Event, A: Action, R: Result, S: State>: UIViewController 
 
 protocol PresenterViewProtocol{
     associatedtype Event
-    associatedtype Action
     associatedtype Result
     associatedtype State
     
-    func getPresenter() -> AnyPresenter<Event, Action, Result, State>
+    func getPresenter() -> AnyPresenter<Event, Result, State>
     func renderState(state: State)
 }
 
-class AnyPresenterView<E, A, R, S>: PresenterViewProtocol {
+class AnyPresenterView<E, R, S>: PresenterViewProtocol {
     
-    private let _getPresenter: () -> AnyPresenter<E, A, R, S>
+    private let _getPresenter: () -> AnyPresenter<E, R, S>
     private let _renderState: (_ state: S) -> ()
     
-    required init<U: PresenterViewProtocol>(_ presenterView: U) where U.Event == E, U.Action == A,
-                                                                        U.Result == R, U.State == S {
+    required init<U: PresenterViewProtocol>(_ presenterView: U) where U.Event == E, U.Result == R, U.State == S {
         _getPresenter = presenterView.getPresenter
         _renderState = presenterView.renderState
     }
     
-    func getPresenter() -> AnyPresenter<E, A, R, S> {
+    func getPresenter() -> AnyPresenter<E, R, S> {
         return _getPresenter()
     }
     
