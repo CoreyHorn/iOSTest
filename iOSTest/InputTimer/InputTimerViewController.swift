@@ -13,16 +13,6 @@ class InputTimerViewController: PresenterView<InputTimerEvent, InputTimerAction,
         }
     }
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.delegate = AnyPresenterView(self)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.delegate = AnyPresenterView(self)
-    }
-    
     func getPresenter() -> AnyPresenter<InputTimerEvent, InputTimerAction, InputTimerResult, InputTimerState> {
         return AnyPresenter(InputTimerPresenter(events: events,
                                                 initialState: InputTimerState(text: "Enter Some Text Below", time: 0)))
@@ -31,5 +21,15 @@ class InputTimerViewController: PresenterView<InputTimerEvent, InputTimerAction,
     func renderState(state: InputTimerState) {
         currentTime.text = String(state.time)
         lastTextEntered.text = state.text
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        self.delegate = AnyPresenterView(self)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.delegate = AnyPresenterView(self)
     }
 }

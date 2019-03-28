@@ -20,6 +20,7 @@ class InputTimerPresenter: Presenter<InputTimerEvent, InputTimerAction, InputTim
         }
     }
     
+    
     func results() -> Observable<InputTimerResult> {
         let interactor = InputTimerInteractor()
         interactor.connect(actions: actions)

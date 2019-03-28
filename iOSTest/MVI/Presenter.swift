@@ -59,6 +59,7 @@ protocol PresenterProtocol {
     
     func eventToAction(event: Event) -> Action
     func accumulator(previousState: State, result: Result) -> State
+    func events() -> Observable<Event>
     func states() -> Observable<State>
     func results() -> Observable<Result>
 }
@@ -66,12 +67,14 @@ protocol PresenterProtocol {
 class AnyPresenter<E, A, R, S>: PresenterProtocol {
     private let _eventToAction: (_ event: E) -> A
     private let _accumulator: (_ previousState: S, _ result: R) -> S
+    private let _events: () -> Observable<E>
     private let _states: () -> Observable<S>
     private let _results: () -> Observable<R>
     
     required init<U: PresenterProtocol>(_ presenterProtocol: U) where U.Event == E, U.Action == A, U.Result == R, U.State == S {
         _eventToAction = presenterProtocol.eventToAction
         _accumulator = presenterProtocol.accumulator
+        _events = presenterProtocol.events
         _states = presenterProtocol.states
         _results = presenterProtocol.results
     }
@@ -82,6 +85,10 @@ class AnyPresenter<E, A, R, S>: PresenterProtocol {
     
     func accumulator(previousState: S, result: R) -> S {
         return _accumulator(previousState, result)
+    }
+    
+    func events() -> Observable<E> {
+        return _events()
     }
     
     func states() -> Observable<S> {

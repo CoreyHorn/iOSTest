@@ -11,6 +11,13 @@ class SimpleViewController: PresenterView<SimpleEvent, SimpleAction, SimpleResul
         NSLog("State: " + state.string)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        events.onNext(.test(string: "event one"))
+        events.onNext(.test(string: "event two"))
+    }
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         self.delegate = AnyPresenterView(self)
@@ -19,11 +26,5 @@ class SimpleViewController: PresenterView<SimpleEvent, SimpleAction, SimpleResul
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.delegate = AnyPresenterView(self)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        events.onNext(.test(string: "whatever we want"))
     }
 }
