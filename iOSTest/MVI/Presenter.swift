@@ -2,7 +2,7 @@ import RxSwift
 import RxCocoa
 import Foundation
 
-class Presenter<E: Event, R: Result, S: State> {
+class Presenter<E: MVIEvent, R: MVIResult, S: MVIState> {
     
     var delegate: AnyPresenter<E, R, S>!{
         didSet { connectStreams() }

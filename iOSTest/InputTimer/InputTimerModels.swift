@@ -1,13 +1,13 @@
-enum InputTimerEvent: Event {
+enum InputTimerEvent: MVIEvent {
     case TextEntry(text: String)
 }
 
-enum InputTimerResult: Result {
+enum InputTimerResult: MVIResult {
     case NewText(text: String)
     case NewTime(time: Int)
 }
 
-struct InputTimerState: State {
+struct InputTimerState: MVIState {
     var text: String
     var time: Int
 }

@@ -1,7 +1,7 @@
 import RxSwift
 import UIKit
 
-class PresenterView<E: Event, R: Result, S: State>: UIViewController {
+class PresenterView<E: MVIEvent, R: MVIResult, S: MVIState>: UIViewController {
     
     var delegate: AnyPresenterView<E, R, S>!
     let events = ReplaySubject<E>.createUnbounded()

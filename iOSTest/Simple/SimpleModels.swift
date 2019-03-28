@@ -1,11 +1,11 @@
-enum SimpleEvent: Event {
+enum SimpleEvent: MVIEvent {
     case test(string: String)
 }
 
-enum SimpleResult: Result {
+enum SimpleResult: MVIResult {
     case test(string: String)
 }
 
-struct SimpleState: State {
+struct SimpleState: MVIState {
     var string: String
 }

@@ -1,7 +1,7 @@
 import RxSwift
 import RxCocoa
 
-class Interactor<E: Event, R: Result> {
+class Interactor<E: MVIEvent, R: MVIResult> {
     
     let results = PublishSubject<R>()
     
